@@ -13,3 +13,11 @@ def main():
     print('Welcome to the Bookstore')
     print('What would you like to do?')
     print('1. Display available books.')
+    print('2. Register User')
+    print('3. Login')
+    print('4. Admin Login')
+    print('5. Exit')
+    choice = int(input('What would you like to do?: '))
+
+
+main()
