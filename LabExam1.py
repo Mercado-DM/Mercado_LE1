@@ -21,6 +21,7 @@ def register(user_acc):
 
         print(f'Welcome, {username}')
         print(user_acc)
+        login_menu(user_acc, username)
 
 def login(user_acc):
     print("Login to your account.")
@@ -33,6 +34,7 @@ def login(user_acc):
         print('Invalid account.')
 
 def login_menu(user_acc, username):
+    balance = user_acc[username]['balance']
     while True:
         print("What would you like to do?")
         print("1. Check balance")
@@ -59,11 +61,12 @@ def login_menu(user_acc, username):
             except TypeError as err:
                 print(err)
 
-def topUp_balance (user_acc, username, balance):
-    topUp = int(input('How much would you like to add to your balance?: '))
+def topUp_balance (user_acc, username):
+    newBalance = int(input('How much would you like to add to your balance?: '))
 
-    balance = user_acc[username][balance] + topUp
-    print(f'Your current balance is: {balance}')
+    currentBalance = user_acc[username]['balance'] + newBalance
+    user_acc[username]['balance'] = currentBalance
+    print(f'Your have added {currentBalance}')
     return login_menu(user_acc, username)
 
 def rent_book (user_acc, username, balance):
@@ -73,23 +76,12 @@ def rent_book (user_acc, username, balance):
     choice = input('Enter your choice from above')
 
     if choice in book_library:
-        print(book_library[choice])
-        confirm = input('Did you choose the right one?: ')
-
-        if confirm == 'Y' or 'y':
-            if user_acc[username][balance] > book_library[choice]['price']:
-                print('You have successfully added to your inventory.')
-                newBalance = user_acc[username][balance] - book_library[choice]['price']
-                print(f'Your remaining balance is {newBalance}')
-            else: 
-                print('You have insufficient balance.')
-        elif confirm == 'N' or 'n':
-            pass
+        
+        if user_acc[username]['balance'] > book_library[choice]['price']:
+            print(f"You have successfully rented {choice}")
         else:
-            try:
-                print('Invalid Input')
-            except:
-                print('An error has occured')
+            print('You have insufficient balance.')
+    
     else:
         print('That book is currently not available.')
         
