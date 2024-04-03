@@ -16,19 +16,40 @@ def register(user_acc):
     if username in user_acc:
         print('This user already exist.')
     else:
-        user_acc[username] = passw
+        user_acc[username] = {'password' : passw, 'balance': 0}
 
         print(f'Welcome, {username}')
+        print(user_acc)
 
 def login(user_acc):
     print("Login to your account.")
     username = input("Enter your username: ")
     passw = input('Enter your password: ')
-    if passw in user_acc[username]:
+    if passw in user_acc[username]['password']:
         print(f'You have logged in to your account, {username}')
+        login_menu(user_acc, username)
     else:
         print('Invalid account.')
 
+def login_menu(user_acc, username):
+    balance = user_acc[username]['balance']
+    while True:
+        print("What would you like to do?")
+        print("1. Check balance")
+        print('2. Check Inventory')
+        print('3. Top-up balance')
+        print('4. Buy a book')
+        print('5. Log out')
+
+        choice = int(input('Type the number of your choice.'))
+
+        if choice == 1:
+            print(f'Your balance is: {balance}')
+        else:
+            try:
+                print('Invalid input.')
+            except TypeError as err:
+                print(err)
 
 
 def main():
