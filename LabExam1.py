@@ -52,7 +52,7 @@ def login_menu(user_acc, username):
         elif choice == 3:
             topUp_balance(user_acc, username)
         elif choice == 4:
-            rent_book(user_acc, username, balance)
+            rent_book(user_acc, username)
         elif choice == 5:
             main()
         else:
@@ -69,7 +69,7 @@ def topUp_balance (user_acc, username):
     print(f'Your have added {currentBalance}')
     return login_menu(user_acc, username)
 
-def rent_book (user_acc, username, balance):
+def rent_book (user_acc, username):
     print('Which book would you like to rent?:')
     print(book_library)
     print('KEEP IN MIND THAT THIS PROGRAM IS CASE-SENSITIVE')
@@ -79,6 +79,12 @@ def rent_book (user_acc, username, balance):
         
         if user_acc[username]['balance'] > book_library[choice]['price']:
             print(f"You have successfully rented {choice}")
+            newBalance = user_acc[username]['balance'] - book_library[choice]['price']
+
+            print(f'Your remaining balance is {newBalance}')
+            bookname = choice
+            user_acc[username] = {'books' : {'name' : bookname}}
+            print(user_acc[username]['books'])
         else:
             print('You have insufficient balance.')
     
