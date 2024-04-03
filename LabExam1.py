@@ -48,7 +48,8 @@ def login_menu(user_acc, username):
         if choice == 1:
             print(f'Your balance is: {balance}')
         elif choice == 2:
-            pass
+            bookname = user_acc[username]['books']
+            print(f'You currently have {bookname}')
         elif choice == 3:
             topUp_balance(user_acc, username)
         elif choice == 4:
@@ -85,6 +86,7 @@ def rent_book (user_acc, username):
             bookname = choice
             user_acc[username] = {'books' : {'name' : bookname}}
             print(user_acc[username]['books'])
+            print(user_acc)
         else:
             print('You have insufficient balance.')
     
