@@ -11,13 +11,25 @@ user_acc = {}
 
 
 def register(user_acc):
-    regname = input("Enter your desired username:")
-    regpassw = input("Enter your desired password:")
-    if regname in user_acc:
+    username = input("Enter your desired username:")
+    passw = input("Enter your desired password:")
+    if username in user_acc:
         print('This user already exist.')
     else:
-        user_acc[regname] = regpassw
-        print(f'Welcome, {regname}')
+        user_acc[username] = passw
+
+        print(f'Welcome, {username}')
+
+def login(user_acc):
+    print("Login to your account.")
+    username = input("Enter your username: ")
+    passw = input('Enter your password: ')
+    if passw in user_acc[username]:
+        print(f'You have logged in to your account, {username}')
+    else:
+        print('Invalid account.')
+
+
 
 def main():
     while True:
@@ -34,6 +46,8 @@ def main():
             print(book_library)
         elif choice == 2:
             register(user_acc)
+        elif choice == 3:
+            login(user_acc)
         elif choice == 5:
             exit()
         else:
