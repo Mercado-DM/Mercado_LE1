@@ -11,6 +11,8 @@ user_acc = {}
 
 balance = 0
 
+admin = {'admin' : 'admin'}
+
 def register(user_acc):
     username = input("Enter your desired username:")
     passw = input("Enter your desired password:")
@@ -39,7 +41,7 @@ def login_menu(user_acc, username):
         print("1. Check balance")
         print('2. Check Inventory')
         print('3. Top-up balance')
-        print('4. Buy a book')
+        print('4. Rent a Book')
         print('5. Log out')
 
         choice = int(input('Type the number of your choice.'))
@@ -90,7 +92,30 @@ def rent_book (user_acc, username):
     
     else:
         print('That book is currently not available.')
-        
+
+def admin_login(admin):
+    while True:
+        print("Please enter your admin credentials.")
+        admin_u = input('Enter your admin credentials: ')
+        admin_p = input('Enter your admin password: ')
+
+        if admin_u and admin_p in admin:
+            admin_menu()
+        else: 
+            print('Invalid credentials. Please try again.')
+
+def admin_menu():
+    while True:
+        print('Admin Menu')
+        print('1. Re-stock a book')
+        print('2. Change a price')
+        print('3. Add a new book')
+
+        choice = int(input('What would you like to do?'))
+
+        if choice == 1:
+            ...
+
 
 
 def main():
