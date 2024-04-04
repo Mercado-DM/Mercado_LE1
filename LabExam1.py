@@ -20,7 +20,6 @@ def register(user_acc):
         user_acc[username] = {'password' : passw, 'balance': balance}
 
         print(f'Welcome, {username}')
-        print(user_acc)
         login_menu(user_acc, username)
 
 def login(user_acc):
@@ -74,7 +73,7 @@ def rent_book (user_acc, username):
     print('Which book would you like to rent?:')
     print(book_library)
     print('KEEP IN MIND THAT THIS PROGRAM IS CASE-SENSITIVE')
-    choice = input('Enter your choice from above')
+    choice = input('Enter your choice from above: ')
 
     if choice in book_library:
         
@@ -86,7 +85,6 @@ def rent_book (user_acc, username):
             bookname = choice
             user_acc[username] = {'books' : {'name' : bookname}}
             print(user_acc[username]['books'])
-            print(user_acc)
         else:
             print('You have insufficient balance.')
     
